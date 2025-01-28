@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sca_ui_imp/shared/screens/onboarding.dart';
 
+import '../../screens/onboarding.dart';
 part 'app_route_string.dart';
 
 class AppRouter {
