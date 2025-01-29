@@ -31,14 +31,17 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       body: Column(
         children: [
           Expanded(
-            child: TabBarView(
-              children: [
-                _imgItem(size),
-                _imgItem(size),
-                _imgItem(size),
-                _imgItem(size),
-              ],
-              controller: _tabController,
+            child: Container(
+              color: AppColors.white,
+              child: TabBarView(
+                children: [
+                  _imgItem(size),
+                  _imgItem(size),
+                  _imgItem(size),
+                  _imgItem(size),
+                ],
+                controller: _tabController,
+              ),
             ),
           ),
           Container(
@@ -171,7 +174,7 @@ class AppButton extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: AppColors.black,
-        borderRadius: BorderRadius.circular(42.07),
+        borderRadius: BorderRadius.circular(17),
       ),
     );
   }
