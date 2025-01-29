@@ -77,18 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(17),
-                      child: Container(
-                        height: 84,
-                        width: 84,
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    "https://unsplash.com/photos/svGwIp_YcOU/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fGxhd3llciUyMGZhY2V8ZW58MHx8fHwxNzM4MTU0ODYyfDA&force=true&w=2400"))),
-                      ),
-                    ),
+                    imageBuilder(),
                     const SizedBox(
                       height: 10,
                     ),
@@ -104,26 +93,32 @@ class _HomeScreenState extends State<HomeScreen> {
               color: AppColors.white,
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    RichText(
-                      textAlign: TextAlign.center,
-                      text: TextSpan(
-                        text: "Your fresh and green\ncomfortable",
-                        children: [
-                          TextSpan(
-                            text: " place",
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            text: "Your fresh and green\ncomfortable",
+                            children: [
+                              TextSpan(
+                                text: " place",
+                                style: style.copyWith(
+                                  fontSize: 27,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColors.appColor,
+                                ),
+                              ),
+                            ],
                             style: style.copyWith(
                               fontSize: 27,
                               fontWeight: FontWeight.w600,
-                              color: AppColors.appColor,
                             ),
                           ),
-                        ],
-                        style: style.copyWith(
-                          fontSize: 27,
-                          fontWeight: FontWeight.w600,
                         ),
-                      ),
+                      ],
                     ),
                     const SizedBox(
                       height: 20,
@@ -222,6 +217,95 @@ class _HomeScreenState extends State<HomeScreen> {
                               title: "Add Event"),
                         ],
                       ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Recommended for You",
+                            style: style.copyWith(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          ListView.separated(
+                            padding: const EdgeInsets.only(
+                              top: 20,
+                              bottom: 100,
+                            ),
+                            separatorBuilder: (_, __) => const SizedBox(
+                              height: 20,
+                            ),
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (_, i) {
+                              return Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color:
+                                            AppColors.greyText.withOpacity(.2),
+                                        spreadRadius: .1,
+                                        blurRadius: 10)
+                                  ],
+                                  borderRadius: BorderRadius.circular(17),
+                                  color: AppColors.white,
+                                ),
+                                child: Row(
+                                  children: [
+                                    imageBuilder(
+                                        url:
+                                            "https://unsplash.com/photos/0g4OCfUAhuY/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8NHx8Z3JlZW50b3dufGVufDB8fHx8MTczODE1NzUzMXww&force=true&w=2400"),
+                                    const SizedBox(
+                                      width: 25,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "876 Green town",
+                                          style: style.copyWith(
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Text(
+                                          "Rosaville",
+                                          style: style.copyWith(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w400,
+                                              color: AppColors.greyText),
+                                        ),
+                                        Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                                AppAssets.yellowStarIcon),
+                                            const SizedBox(
+                                              width: 3,
+                                            ),
+                                            Text(
+                                              "4.9",
+                                              style: style.copyWith(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                            itemCount: 10,
+                          )
+                        ],
+                      ),
                     )
                   ],
                 ),
@@ -229,6 +313,23 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  Widget imageBuilder(
+      {double height = 84,
+      double width = 84,
+      String url =
+          "https://unsplash.com/photos/svGwIp_YcOU/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fGxhd3llciUyMGZhY2V8ZW58MHx8fHwxNzM4MTU0ODYyfDA&force=true&w=2400"}) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(17),
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+            image:
+                DecorationImage(fit: BoxFit.cover, image: NetworkImage(url))),
       ),
     );
   }
@@ -255,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(asset),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Text(
