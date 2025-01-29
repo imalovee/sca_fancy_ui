@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sca_ui_imp/shared/app_colors.dart';
 import 'package:sca_ui_imp/shared/assets.dart';
+import 'package:sca_ui_imp/shared/navigation/app_router.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -71,13 +72,16 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               ),
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(
               left: 20,
               right: 20,
               top: 40,
             ),
             child: AppButton(
+              callback: () {
+                AppRouter.push(AppRouterString.homeScreen);
+              },
               text: "Let’s Start",
             ),
           ),
@@ -157,24 +161,26 @@ class AppButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    return Container(
-      width: size.width,
-      padding: const EdgeInsets.symmetric(
-        vertical: 15,
-      ),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: style.copyWith(
-          color: AppColors.white,
-          fontSize: 19,
-          fontWeight: FontWeight.w600,
+    return InkWell(
+      onTap: callback,
+      child: Container(
+        width: size.width,
+        padding: const EdgeInsets.symmetric(
+          vertical: 15,
         ),
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.black,
-        borderRadius: BorderRadius.circular(17),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: style.copyWith(
+            color: AppColors.white,
+            fontSize: 19,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.black,
+          borderRadius: BorderRadius.circular(17),
+        ),
       ),
     );
   }
