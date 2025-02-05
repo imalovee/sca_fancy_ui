@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sca_ui_imp/shared/app_colors.dart';
 import 'package:sca_ui_imp/shared/assets.dart';
 import 'package:sca_ui_imp/shared/navigation/app_router.dart';
@@ -60,8 +61,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                 (i) => AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   margin: const EdgeInsets.only(right: 12),
-                  height: 10,
-                  width: 10,
+                  height: 10.h,
+                  width: 10.w,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _tabController.index == i
@@ -97,8 +98,8 @@ class _OnboardingScreenState extends State<OnboardingScreen>
     return Column(
       children: [
         SizedBox(
-          height: size.height * .6,
-          width: size.width,
+          height: size.height * .6 .h,
+          width: size.width .w,
           child: Image.asset(
             AppAssets.onboardingBg,
             fit: BoxFit.fitHeight,
@@ -118,7 +119,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     TextSpan(
                       text: "Workspace",
                       style: style.copyWith(
-                        fontSize: 27,
+                        fontSize: 27.h,
                         fontWeight: FontWeight.w600,
                         color: AppColors.appColor,
                       ),
@@ -128,7 +129,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                     ),
                   ],
                   style: style.copyWith(
-                    fontSize: 27,
+                    fontSize: 27.h,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -139,7 +140,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
               Text(
                 "A Space that unite the conscious individuals who collaborate to reduce their carbon footprint.",
                 style: style.copyWith(
-                  fontSize: 14,
+                  fontSize: 14.h,
                   color: AppColors.greyText,
                   fontWeight: FontWeight.w400,
                 ),
@@ -168,18 +169,18 @@ class AppButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(
           vertical: 15,
         ),
+        decoration: BoxDecoration(
+          color: AppColors.black,
+          borderRadius: BorderRadius.circular(17),
+        ),
         child: Text(
           text,
           textAlign: TextAlign.center,
           style: style.copyWith(
             color: AppColors.white,
-            fontSize: 19,
+            fontSize: 19.h,
             fontWeight: FontWeight.w600,
           ),
-        ),
-        decoration: BoxDecoration(
-          color: AppColors.black,
-          borderRadius: BorderRadius.circular(17),
         ),
       ),
     );

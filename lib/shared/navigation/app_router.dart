@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sca_ui_imp/screens/details_screen.dart';
 
 import '../../screens/home_screen.dart';
 import '../../screens/onboarding.dart';
@@ -15,7 +16,9 @@ class AppRouter {
       case AppRouterString.homeScreen:
         return CupertinoPageRoute(builder: (_) => HomeScreen());
       case AppRouterString.detailsScreen:
-        return CupertinoPageRoute(builder: (_) => SizedBox());
+        return CupertinoPageRoute(builder: (_) => DetailsScreen(
+          key: settings.arguments as ValueKey?,
+        ));
       default:
         return CupertinoPageRoute(builder: (_) => SizedBox());
     }
